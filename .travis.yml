@@ -1,0 +1,20 @@
+sudo: required
+language: generic 
+services:
+  - docker
+before_install:
+  - docker build -t docker-react-adi -f Docker.dev .
+script:
+  - docker run -e CI=true docker-react-adi npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-577051502483"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_ACCESS_KEY
