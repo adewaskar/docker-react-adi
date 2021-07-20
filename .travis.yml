@@ -5,7 +5,7 @@ services:
 before_install:
   - docker build -t docker-react-adi .
 script:
-  - docker-compose up
+  - docker run -e CI=true docker-react-adi npm run test
 deploy:
   provider: elasticbeanstalk
   region: "us-east-1"
