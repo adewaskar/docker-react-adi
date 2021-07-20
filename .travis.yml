@@ -3,7 +3,7 @@ language: generic
 services:
   - docker
 before_install:
-  - docker build -t docker-react-adi -f Dockerfile .
+  - docker build -t docker-react-adi Dockerfile .
 script:
   - docker run -e CI=true docker-react-adi npm run test
 deploy:
